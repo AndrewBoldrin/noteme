@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
-import { NoteInputFilter } from './NoteInputFilter/NoteInputFilter';
+import { NoteInputFilter } from '../Index/NoteInputFilter/NoteInputFilter';
+import { NoteContainer } from './NoteContainer/NoteContainer';
 
 export const Index = (): ReactElement => {
   const [filterText, setFilterText] = useState<string>('');
@@ -11,6 +12,7 @@ export const Index = (): ReactElement => {
   return (
     <>
       <NoteInputFilter filterText={filterText} onInputChange={onInputChange} />
+      <NoteContainer />
     </>
   );
 };
