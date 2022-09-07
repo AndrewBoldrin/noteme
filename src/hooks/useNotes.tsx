@@ -4,9 +4,9 @@ import { INote } from '../pages/Index/utils/interfaces';
 
 const noteInitialData = {
   id: new Date().getTime().toString(),
-  title: 'initial title3',
+  title: 'write your note title here',
   color: palette.lightPurple,
-  text: 'some text into note',
+  text: 'write your note text here',
 };
 
 interface IuseNotes {
@@ -14,7 +14,7 @@ interface IuseNotes {
   getNoteById: (id: string) => INote;
   addNote: (title: string, color: string, text: string) => void;
   updateNote: (id: string, title: string, color: string, text: string) => void;
-  removeNote: (name: string) => void;
+  removeNote: (id: string) => void;
 }
 
 export const useNotes = (): IuseNotes => {
@@ -46,8 +46,13 @@ export const useNotes = (): IuseNotes => {
     setNotes(updatedNotes);
   };
 
-  const removeNote = (name: string): void => {
-    console.log('removing note');
+  const removeNote = (id: string): void => {
+    if (notes.length === 1) {
+      setNotes([noteInitialData]);
+    } else {
+      const newNotes = notes.filter((note) => note.id !== id);
+      setNotes(newNotes);
+    }
   };
 
   return { notes, getNoteById, addNote, updateNote, removeNote };
