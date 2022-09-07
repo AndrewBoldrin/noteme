@@ -5,7 +5,7 @@ import {
   TextareaAutosize,
   TextField,
 } from '@mui/material';
-import { Close } from '@mui/icons-material';
+import { AddLinkTwoTone, Close } from '@mui/icons-material';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { palette } from '../../utils/colorPalette';
 import { INote } from '../../utils/interfaces';
@@ -26,6 +26,7 @@ const style = {
 interface INoteFormComponent {
   note: INote | null;
   isEditing: boolean;
+  addNote: (title: string, color: string, text: string) => void;
   updateNote: (id: string, title: string, color: string, text: string) => void;
   onCloseModal: () => void;
 }
@@ -33,6 +34,7 @@ interface INoteFormComponent {
 export const NoteForm = ({
   note,
   isEditing,
+  addNote,
   updateNote,
   onCloseModal,
 }: INoteFormComponent): ReactElement => {
@@ -49,8 +51,8 @@ export const NoteForm = ({
   const onSave = (): void => {
     if (isEditing && note != null) {
       updateNote(note.id, titleForm, palette.lightPurple, textForm);
-      onCloseModal();
-    }
+    } else addNote(titleForm, palette.lightPurple, textForm);
+    onCloseModal();
   };
 
   return (

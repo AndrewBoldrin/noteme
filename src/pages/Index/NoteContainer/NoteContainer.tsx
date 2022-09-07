@@ -1,9 +1,10 @@
-import { Modal, Box, Fade } from '@mui/material';
+import { Modal, Box, Fade, Grid } from '@mui/material';
 import React, { ReactElement, useState } from 'react';
 import { useNotes } from '../../../hooks/useNotes';
 import { Note } from './Note/Note';
 import { INote } from '../utils/interfaces';
 import { NoteForm } from './NoteForm.tsx/NoteForm';
+import { NewNoteButton } from './NewNoteButton/NewNoteButton';
 
 export const NoteContainer = (): ReactElement => {
   const { notes, getNoteById, addNote, updateNote, removeNote } = useNotes();
@@ -17,6 +18,7 @@ export const NoteContainer = (): ReactElement => {
   };
 
   const onCloseModal = (): void => {
+    setIsEditing(false);
     setOpenModal(false);
   };
 
@@ -39,6 +41,7 @@ export const NoteContainer = (): ReactElement => {
             <NoteForm
               note={selectedNote}
               isEditing={isEditing}
+              addNote={addNote}
               updateNote={updateNote}
               onCloseModal={onCloseModal}
             />
@@ -46,16 +49,21 @@ export const NoteContainer = (): ReactElement => {
         </Fade>
       </Modal>
 
-      {notes.map((note: INote): ReactElement => {
-        return (
-          <Note
-            key={note.title}
-            note={note}
-            onOpenModal={onOpenModal}
-            onEditing={onEditing}
-          />
-        );
-      })}
+      <NewNoteButton onOpenModal={onOpenModal} />
+
+      <Grid container spacing={2} sx={{ mt: 2, borderTop: '1px solid #ccc' }}>
+        {notes.map((note: INote): ReactElement => {
+          return (
+            <Grid item xs={12} sm={4} md={3} lg={2.4} key={note.id}>
+              <Note
+                note={note}
+                onOpenModal={onOpenModal}
+                onEditing={onEditing}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 };

@@ -12,7 +12,7 @@ const noteInitialData = {
 interface IuseNotes {
   notes: INote[];
   getNoteById: (id: string) => INote;
-  addNote: (newData: typeof noteInitialData) => void;
+  addNote: (title: string, color: string, text: string) => void;
   updateNote: (id: string, title: string, color: string, text: string) => void;
   removeNote: (name: string) => void;
 }
@@ -25,8 +25,11 @@ export const useNotes = (): IuseNotes => {
     return note[0];
   };
 
-  const addNote = (newData: typeof noteInitialData): void => {
-    console.log('adding note');
+  const addNote = (title: string, color: string, text: string): void => {
+    const id = new Date().getTime().toString();
+    const newNote = { id, title, color, text };
+
+    setNotes([newNote, ...notes]);
   };
 
   const updateNote = (

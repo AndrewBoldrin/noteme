@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import React, { ReactElement } from 'react';
 import { INote } from '../../utils/interfaces';
-import { Edit, Add, ColorLens } from '@mui/icons-material';
+import { Edit, ColorLens } from '@mui/icons-material';
 
 interface INoteComponent {
   note: INote;
@@ -9,17 +9,12 @@ interface INoteComponent {
   onEditing: (id: string) => void;
 }
 
-export const Note = ({
-  note,
-  onOpenModal,
-  onEditing,
-}: INoteComponent): ReactElement => {
+export const Note = ({ note, onEditing }: INoteComponent): ReactElement => {
   const { id, title, text, color } = note;
   return (
     <Box
       sx={{
         position: 'relative',
-        maxWidth: '15rem',
         minHeight: '15rem',
         backgroundColor: color,
         paddingInline: '2rem',
@@ -40,9 +35,6 @@ export const Note = ({
         {text}
       </Typography>
       <Box sx={{ position: 'absolute', bottom: 0, right: 0 }}>
-        <IconButton onClick={onOpenModal}>
-          <Add />
-        </IconButton>
         <IconButton onClick={() => onEditing(id)}>
           <Edit />
         </IconButton>

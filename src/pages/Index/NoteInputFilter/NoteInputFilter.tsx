@@ -15,7 +15,7 @@ export const NoteInputFilter = ({
       sx={{
         position: 'relative',
         width: '50rem',
-        margin: '5rem auto',
+        margin: '3rem auto',
       }}
     >
       <TextField
