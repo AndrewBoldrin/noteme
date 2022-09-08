@@ -5,7 +5,7 @@ import {
   TextareaAutosize,
   TextField,
 } from '@mui/material';
-import { AddLinkTwoTone, Close } from '@mui/icons-material';
+import { Close } from '@mui/icons-material';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { palette } from '../../utils/colorPalette';
 import { INote } from '../../utils/interfaces';
@@ -56,7 +56,7 @@ export const NoteForm = ({
   };
 
   return (
-    <Box sx={{ ...style, backgroundColor: palette.lightPurple }}>
+    <Box sx={{ ...style, backgroundColor: note?.color }}>
       <IconButton
         sx={{ display: 'block', float: 'right' }}
         onClick={onCloseModal}
@@ -83,7 +83,7 @@ export const NoteForm = ({
           marginBlock: '1rem',
           fontSize: '1rem',
           border: 'none',
-          backgroundColor: palette.lightPurple,
+          backgroundColor: note?.color,
           outline: 'none',
         }}
       />

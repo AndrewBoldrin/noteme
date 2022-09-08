@@ -60,6 +60,7 @@ export const NoteContainer = (): ReactElement => {
                 onOpenModal={onOpenModal}
                 onEditing={onEditing}
                 onRemoving={removeNote}
+                updateNote={updateNote}
               />
             </Grid>
           );
