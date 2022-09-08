@@ -6,7 +6,11 @@ import { INote } from '../utils/interfaces';
 import { NoteForm } from './NoteForm.tsx/NoteForm';
 import { NewNoteButton } from './NewNoteButton/NewNoteButton';
 
-export const NoteContainer = (): ReactElement => {
+interface INoteContainer {
+  filterText: string;
+}
+
+export const NoteContainer = ({ filterText }: INoteContainer): ReactElement => {
   const { notes, getNoteById, addNote, updateNote, removeNote } = useNotes();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -52,19 +56,24 @@ export const NoteContainer = (): ReactElement => {
       <NewNoteButton onOpenModal={onOpenModal} />
 
       <Grid container spacing={2} sx={{ mt: 2, borderTop: '1px solid #ccc' }}>
-        {notes.map((note: INote): ReactElement => {
-          return (
-            <Grid item xs={12} sm={4} md={3} lg={2.4} key={note.id}>
-              <Note
-                note={note}
-                onOpenModal={onOpenModal}
-                onEditing={onEditing}
-                onRemoving={removeNote}
-                updateNote={updateNote}
-              />
-            </Grid>
-          );
-        })}
+        {notes
+          .filter(
+            (note) =>
+              note.title.includes(filterText) || note.text.includes(filterText),
+          )
+          .map((note: INote): ReactElement => {
+            return (
+              <Grid item xs={12} sm={4} md={3} lg={2.4} key={note.id}>
+                <Note
+                  note={note}
+                  onOpenModal={onOpenModal}
+                  onEditing={onEditing}
+                  onRemoving={removeNote}
+                  updateNote={updateNote}
+                />
+              </Grid>
+            );
+          })}
       </Grid>
     </Box>
   );

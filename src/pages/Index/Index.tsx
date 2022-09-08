@@ -12,7 +12,7 @@ export const Index = (): ReactElement => {
   return (
     <>
       <NoteInputFilter filterText={filterText} onInputChange={onInputChange} />
-      <NoteContainer />
+      <NoteContainer filterText={filterText} />
     </>
   );
 };
