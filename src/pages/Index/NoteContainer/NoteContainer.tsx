@@ -69,7 +69,7 @@ export const NoteContainer = ({ filterText }: INoteContainer): ReactElement => {
                   note={note}
                   onOpenModal={onOpenModal}
                   onEditing={onEditing}
-                  onRemoving={removeNote}
+                  removeNote={removeNote}
                   updateNote={updateNote}
                 />
               </Grid>

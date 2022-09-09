@@ -8,14 +8,14 @@ interface INoteComponent {
   note: INote;
   onOpenModal: () => void;
   onEditing: (id: string) => void;
-  onRemoving: (id: string) => void;
+  removeNote: (id: string) => void;
   updateNote: (id: string, color: string, title: string, text: string) => void;
 }
 
 export const Note = ({
   note,
   onEditing,
-  onRemoving,
+  removeNote,
   updateNote,
 }: INoteComponent): ReactElement => {
   const { id, title, text, color } = note;
@@ -62,7 +62,7 @@ export const Note = ({
         {text}
       </Typography>
       <Box sx={{ position: 'absolute', bottom: 0, right: 0 }}>
-        <IconButton onClick={() => onRemoving(id)}>
+        <IconButton onClick={() => removeNote(id)}>
           <Delete />
         </IconButton>
         <IconButton onClick={() => onEditing(id)}>
