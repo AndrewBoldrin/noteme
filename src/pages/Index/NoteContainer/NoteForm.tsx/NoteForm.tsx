@@ -40,6 +40,8 @@ export const NoteForm = ({
 }: INoteFormComponent): ReactElement => {
   const [titleForm, setTitleForm] = useState<string>('');
   const [textForm, setTextForm] = useState<string>('');
+  const initialBackgroundColor =
+    note != null ? note.color : palette.lightPurple;
 
   useEffect(() => {
     if (isEditing && note != null) {
@@ -56,7 +58,12 @@ export const NoteForm = ({
   };
 
   return (
-    <Box sx={{ ...style, backgroundColor: note?.color }}>
+    <Box
+      sx={{
+        ...style,
+        backgroundColor: initialBackgroundColor,
+      }}
+    >
       <IconButton
         sx={{ display: 'block', float: 'right' }}
         onClick={onCloseModal}
@@ -83,7 +90,7 @@ export const NoteForm = ({
           marginBlock: '1rem',
           fontSize: '1rem',
           border: 'none',
-          backgroundColor: note?.color,
+          backgroundColor: initialBackgroundColor,
           outline: 'none',
         }}
       />

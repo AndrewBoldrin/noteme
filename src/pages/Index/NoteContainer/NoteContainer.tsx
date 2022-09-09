@@ -23,6 +23,7 @@ export const NoteContainer = ({ filterText }: INoteContainer): ReactElement => {
 
   const onCloseModal = (): void => {
     setIsEditing(false);
+    setSelecedtNote(null);
     setOpenModal(false);
   };
 
