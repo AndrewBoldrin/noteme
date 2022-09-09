@@ -14,7 +14,7 @@ export const NoteInputFilter = ({
     <Box
       sx={{
         position: 'relative',
-        width: '50rem',
+        maxWidth: '50rem',
         margin: '3rem auto',
       }}
     >
